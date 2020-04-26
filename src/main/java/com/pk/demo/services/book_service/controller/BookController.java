@@ -25,14 +25,14 @@ public class BookController {
     BookService bookservice;
 	
 	@GetMapping
-    public ResponseEntity<List<Book>> getAllEmployees() {
+    public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> list = bookservice.getAllBooks();
  
         return new ResponseEntity<List<Book>>(list, new HttpHeaders(), HttpStatus.OK);
     }
  
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getEmployeeById(@PathVariable("id") Long id)
+    public ResponseEntity<Book> getBookById(@PathVariable("id") Long id)
                                                     throws RecordNotFoundException {
     	Book entity = bookservice.getBookById(id);
  
@@ -40,14 +40,14 @@ public class BookController {
     }
  
     @PostMapping
-    public ResponseEntity<Book> createOrUpdateEmployee(Book book)
+    public ResponseEntity<Book> createOrUpdateBook(Book book)
                                                     throws RecordNotFoundException {
     	Book updated = bookservice.createOrUpdateBook(book);
         return new ResponseEntity<Book>(updated, new HttpHeaders(), HttpStatus.OK);
     }
  
     @DeleteMapping("/{id}")
-    public HttpStatus deleteEmployeeById(@PathVariable("id") Long id)
+    public HttpStatus deleteBookById(@PathVariable("id") Long id)
                                                     throws RecordNotFoundException {
     	bookservice.deleteBookById(id);
         return HttpStatus.FORBIDDEN;
