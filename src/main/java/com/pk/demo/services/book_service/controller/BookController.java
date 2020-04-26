@@ -40,7 +40,7 @@ public class BookController {
     }
  
     @PostMapping
-    public ResponseEntity<Book> createOrUpdateBook(Book book)
+    public ResponseEntity<Book> createOrUpdateBook(@RequestBody Book book)
                                                     throws RecordNotFoundException {
     	Book updated = bookservice.createOrUpdateBook(book);
         return new ResponseEntity<Book>(updated, new HttpHeaders(), HttpStatus.OK);
