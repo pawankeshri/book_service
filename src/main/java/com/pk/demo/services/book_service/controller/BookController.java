@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.pk.demo.services.book_service.entity.Book;
 import com.pk.demo.services.book_service.exception.RecordNotFoundException;
 import com.pk.demo.services.book_service.service.BookService;
@@ -25,6 +25,7 @@ public class BookController {
 	@Autowired
     BookService bookservice;
 	
+	@CrossOrigin
 	@GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> list = bookservice.getAllBooks();
@@ -32,6 +33,7 @@ public class BookController {
         return new ResponseEntity<List<Book>>(list, new HttpHeaders(), HttpStatus.OK);
     }
  
+    @CrossOrigin	
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") Long id)
                                                     throws RecordNotFoundException {
@@ -39,7 +41,8 @@ public class BookController {
  
         return new ResponseEntity<Book>(entity, new HttpHeaders(), HttpStatus.OK);
     }
- 
+    
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<Book> createOrUpdateBook(@RequestBody Book book)
                                                     throws RecordNotFoundException {
@@ -47,6 +50,7 @@ public class BookController {
         return new ResponseEntity<Book>(updated, new HttpHeaders(), HttpStatus.OK);
     }
  
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public HttpStatus deleteBookById(@PathVariable("id") Long id)
                                                     throws RecordNotFoundException {
